@@ -9,3 +9,9 @@
 /.gradle
 /.idea
 /build
+/gradle
+data/cookies.txt
+data/guildsData.json
+data/notifications.json
+data/quotes.json
+.env
