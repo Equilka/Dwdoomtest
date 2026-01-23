@@ -1,9 +1,9 @@
 package com.equilka.discordbot;
 
-import com.equilka.discordbot.commands.CommandsManager;
+import com.equilka.discordbot.events.commands.CommandsManager;
 import com.equilka.discordbot.data.LanguageRepository;
-import com.equilka.discordbot.data.config.BotConfig;
-import com.equilka.discordbot.model.voice.VoiceManager;
+import com.equilka.discordbot.data.model.config.BotConfig;
+import com.equilka.discordbot.events.voice.VoiceManager;
 import net.dv8tion.jda.api.JDA;
 
 import java.util.Locale;

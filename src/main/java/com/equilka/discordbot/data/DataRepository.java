@@ -1,5 +1,6 @@
 package com.equilka.discordbot.data;
 
+import com.equilka.discordbot.data.model.BotData;
 import com.google.gson.*;
 
 import java.io.*;

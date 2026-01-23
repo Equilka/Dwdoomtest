@@ -1,21 +1,18 @@
 package com.equilka.discordbot;
 
-import com.equilka.discordbot.data.DataRepository;
-import com.equilka.discordbot.data.config.BotConfigData;
-import com.equilka.discordbot.data.config.BotConfig;
-import com.equilka.discordbot.listeners.commands.NotificationsListener;
-import com.equilka.discordbot.listeners.commands.QuotesListener;
-import com.equilka.discordbot.listeners.commands.StatsListener;
-import com.equilka.discordbot.model.downloadable.DataCleaner;
-import com.equilka.discordbot.model.guild.GuildDataUpdater;
+import com.equilka.discordbot.data.model.config.BotConfigData;
+import com.equilka.discordbot.data.model.config.BotConfig;
+import com.equilka.discordbot.events.listeners.commands.NotificationsListener;
+import com.equilka.discordbot.events.listeners.commands.QuotesListener;
+import com.equilka.discordbot.events.listeners.commands.StatsListener;
+import com.equilka.discordbot.data.DataCleaner;
+import com.equilka.discordbot.data.GuildDataUpdater;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.exceptions.RateLimitedException;
 
 import javax.security.auth.login.LoginException;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
 
