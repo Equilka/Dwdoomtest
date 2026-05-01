@@ -53,7 +53,7 @@ public class QuotesListener extends ListenerAdapter {
         GuildQuotes newGuildQuotes = new GuildQuotes(event.getGuild().getId(), quotes);
 
         dataRepository.add(newGuildQuotes);
-        dataRepository.save();
+
     }
 
     private boolean isValid(Message message) {
@@ -106,7 +106,6 @@ public class QuotesListener extends ListenerAdapter {
             GuildQuotes newGuildQuotes = new GuildQuotes(message.getGuild().getId(), quotes);
 
             dataRepository.add(newGuildQuotes);
-            dataRepository.save();
         }
     }
 }

@@ -5,6 +5,7 @@ import com.google.gson.*;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -29,6 +30,8 @@ public class DataRepository {
     }
 
     public void load() {
+        if (data != null)
+            return;
         if(!dataFile.exists() || dataFile.length() == 0) {
             data = new JsonArray();
             try {
@@ -42,8 +45,9 @@ public class DataRepository {
             return;
         }
 
-        try (Reader reader = new FileReader(dataFile)) {
-            data = JsonParser.parseReader(reader).getAsJsonArray();
+        try (Reader reader = Files.newBufferedReader(dataFile.toPath(), StandardCharsets.UTF_8)) {
+            data = JsonParser.parseReader(reader).
+                    getAsJsonArray();
         } catch (IOException e) {
             data = new JsonArray();
             throw new RuntimeException("Failed to load data from file", e);
@@ -51,25 +55,33 @@ public class DataRepository {
     }
 
     public void save() {
-        try (Writer writer = new FileWriter(dataFile)){
+        try (Writer writer = Files.newBufferedWriter(dataFile.toPath(), StandardCharsets.UTF_8)) {
             gson.toJson(data, writer);
         } catch (IOException e) {
             throw new RuntimeException("Failed to save data to file", e);
         }
     }
 
-    public void add(BotData element) {
+    public <T extends BotData> void add(T element) {
         JsonElement jsonElement = gson.toJsonTree(element);
         data.add(jsonElement);
+        save();
     }
 
     public void add(JsonElement jsonElement) {
         data.add(jsonElement);
+        save();
+    }
+
+    public <T extends BotData> void revriteOrAdd(String id, Class<T> tClass, T element) {
+        removeById(id, tClass);
+        add(element);
     }
 
     public <T extends BotData> void removeById(String id, Class<T> tClass) {
         Optional<T> object = findRecursive(id, tClass);
-        data.remove(gson.toJsonTree(object.get()));
+        object.ifPresent(obj -> data.remove(gson.toJsonTree(obj)));
+        save();
     }
 
     public <T extends BotData> List<T> getAll(Class<T> tClass) {
@@ -110,6 +122,7 @@ public class DataRepository {
                 data.add(newData);
             }
         }
+        save();
     }
 
     private <T extends BotData> Optional<T> findRecursive(String id, Class<T> tClss) {

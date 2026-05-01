@@ -39,7 +39,7 @@ public class NotifyCommand extends SmartSlashCommand {
         Notification notification = new Notification(subscriber, target, guild, message);
 
         dataRepository.add(notification);
-        dataRepository.save();
+
 
         event.reply(lr.getTranslatable(lang, "command.notify.reply.message")).setEphemeral(true).queue();
     }

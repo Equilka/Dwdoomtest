@@ -45,7 +45,7 @@ public class GuildConfigCommand extends SmartSlashCommand {
         dataRepository.removeById(event.getGuild().getId(), GuildStats.class);
         dataRepository.add(stats);
 
-        dataRepository.save();
+
         bot.getCommandsManager().updateGuildsCommands(bot.getJda(), guildId);
         event.reply(lr.getTranslatable(lang, "command.gconfig.response.done")).setEphemeral(true).queue();
     }

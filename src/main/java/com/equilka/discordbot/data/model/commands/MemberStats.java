@@ -39,4 +39,6 @@ public class MemberStats implements BotData {
     public Long getCredit() {
         return credit;
     }
+
+    public void setCredit(Long credits) {this.credit = credits;}
 }

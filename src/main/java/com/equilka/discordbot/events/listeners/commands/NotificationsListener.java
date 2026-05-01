@@ -59,7 +59,7 @@ public class NotificationsListener extends ListenerAdapter {
                                             .sendMessageEmbeds(createEmbeded(jda, date, subscriber.getId(), lr.getTranslatable(lang, "pm.notification.user_awaits"), notification.getMessage())).queue());
 
                         dataRepository.removeById(notification.getId(), Notification.class);
-                        dataRepository.save();
+
                     }
                 }
             } catch (Exception e) {

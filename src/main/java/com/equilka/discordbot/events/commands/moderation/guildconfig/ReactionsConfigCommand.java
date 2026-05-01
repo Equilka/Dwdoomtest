@@ -68,7 +68,7 @@ public class ReactionsConfigCommand extends SmartSlashCommand {
         dataRepository.removeById(event.getGuild().getId(), GuildStats.class);
         dataRepository.add(stats);
 
-        dataRepository.save();
+
         event.reply(lr.getTranslatable(lang, "command.rconfig.response.done")).setEphemeral(true).queue();
     }
 

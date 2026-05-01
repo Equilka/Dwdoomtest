@@ -40,13 +40,13 @@ public class QuoteCommand extends SmartSlashCommand {
 
         Optional<GuildQuotes> guildOptional = dataRepository.getAll(GuildQuotes.class)
                 .stream().filter(g -> g.getId().equals(event.getGuild().getId())).findFirst();
-        if (guildOptional.isEmpty()) {
+        if ( guildOptional == null || guildOptional.isEmpty()) {
             EmbedManager.sendErrorEmbed(event, "command.quote.error.server_not_found");
             return;
         }
 
         List<Quote> quotes = guildOptional.get().getQuotes();
-        if (quotes.isEmpty()) {
+        if ( quotes == null || quotes.isEmpty()) {
             EmbedManager.sendErrorEmbed(event, "command.quote.error.no_quotations");
             return;
         }

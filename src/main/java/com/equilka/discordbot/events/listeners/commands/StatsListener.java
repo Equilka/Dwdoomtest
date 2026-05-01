@@ -27,9 +27,10 @@ public class StatsListener extends ListenerAdapter {
         if (memberStats == null) return;
 
         memberStats.setMessages(memberStats.getMessages() + 1);
+        stats.getStats().set(stats.getStats().indexOf(memberStats), memberStats);
         stats.setMessages(stats.getMessages() + 1);
 
-        dataRepository.save();
+        dataRepository.revriteOrAdd(stats.getId(), GuildStats.class, stats);
     }
 
     @Override
@@ -56,9 +57,9 @@ public class StatsListener extends ListenerAdapter {
                 .filter(m -> m.getId().equals(authorId)).findFirst().orElse(null);
         if (memberStats == null) return;
 
-        memberStats.setMessages(memberStats.getMessages() + 1);
-        stats.setMessages(stats.getMessages() + 1);
+        memberStats.setCredit(memberStats.getCredit() + 1);
+        stats.getStats().set(stats.getStats().indexOf(memberStats), memberStats);
 
-        dataRepository.save();
+        dataRepository.revriteOrAdd(stats.getId(), GuildStats.class, stats);
     }
 }

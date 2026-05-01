@@ -34,7 +34,7 @@ public class GuildDataUpdater {
         for (Guild guild : guilds) {
             UpdateGuildData.load(dataRepository, guild);
         }
-        dataRepository.save();
+
 
         blocker.countDown();
     }
