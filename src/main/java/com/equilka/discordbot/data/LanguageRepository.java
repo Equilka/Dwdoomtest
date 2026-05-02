@@ -1,11 +1,12 @@
 package com.equilka.discordbot.data;
 
 import java.io.File;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.text.MessageFormat;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class LanguageRepository {
     private final Map<Locale, ResourceBundle> bundles = new HashMap<>();
@@ -32,7 +33,7 @@ public class LanguageRepository {
         }
 
         if (locFiles == null) {
-            System.err.println("Error reading translations. Check if any localisation file exists in resources/lang");
+            System.err.println("Error reading translations. Check if any localization file exists in resources/lang");
             return;
         }
 
@@ -45,7 +46,7 @@ public class LanguageRepository {
         try {
             ResourceBundle bundle = ResourceBundle.getBundle("lang." + locLocale.getDisplayName(), locLocale);
             bundles.put(locLocale, bundle);
-            System.out.println("Localisation file loaded: " + locLocale);
+            System.out.println("Localization file loaded: " + locLocale);
         } catch (Exception e) {
             System.out.println("Error reading translations.");
             e.printStackTrace();
