@@ -1,17 +1,19 @@
 package com.equilka.discordbot.events.general.downloadable;
 
 import com.equilka.discordbot.Bot;
-import com.equilka.discordbot.events.commands.SmartSlashCommand;
 import com.equilka.discordbot.data.DownloadFile;
 import com.equilka.discordbot.data.FormatManager;
+import com.equilka.discordbot.events.commands.SmartSlashCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.utils.FileUpload;
 
 import java.io.File;
-import java.util.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 
 public class DownloadCommand extends SmartSlashCommand {
@@ -47,7 +49,10 @@ public class DownloadCommand extends SmartSlashCommand {
                         thread.start();
                         thread.join();
 
-                        interactionHook.editOriginal(thread.getOutput()).queue();
+                        interactionHook.editOriginal("").setFiles(FileUpload.fromData(
+                                thread.getOutput().getBytes(StandardCharsets.UTF_8),
+                                "formats.txt"
+                        )).queue();
                     } else {
                         DownloadFile thread = new DownloadFile(link, format,
                                 (percent, speed, eta, raw) -> {

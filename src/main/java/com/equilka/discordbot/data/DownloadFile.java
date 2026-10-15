@@ -46,6 +46,7 @@ public class DownloadFile extends Thread {
                 "--cookies", new DataRepository("cookies.txt").getPath(),
                 "-P", folder.getPath(),
                 "-f", mode,
+                "-o", "%(title)s q:" + mode + ".%(ext)s",
                 url
         );
         ytdlp.redirectErrorStream(true);
