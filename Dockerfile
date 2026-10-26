@@ -1,10 +1,7 @@
-FROM eclipse-temurin:25-jdk AS build
+FROM gradle:jdk25 AS build
 WORKDIR /app
-COPY gradlew settings.gradle.kts build.gradle.kts ./
-COPY gradle gradle
-RUN ./gradlew --no-daemon dependencies > /dev/null 2>&1 || true
-COPY src src
-RUN ./gradlew --no-daemon shadowJar
+COPY . .
+RUN gradle --no-daemon shadowJar
 
 FROM eclipse-temurin:25-jre
 WORKDIR /app
