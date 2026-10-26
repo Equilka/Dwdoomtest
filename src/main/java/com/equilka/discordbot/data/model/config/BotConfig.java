@@ -14,7 +14,7 @@ public class BotConfig {
     public BotConfig() {
         this.dotenv = Dotenv.load();
         
-        this.token = dotenv.get("DISCORD_TOKEN_TEST");
+        this.token = dotenv.get("DISCORD_TOKEN");
         this.ownerId = dotenv.get("OWNER_ID");
         this.domain = dotenv.get("DOMAIN");
         this.langCode = dotenv.get("LANGUAGE_CODE");

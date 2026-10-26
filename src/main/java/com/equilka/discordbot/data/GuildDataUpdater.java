@@ -33,6 +33,15 @@ public class GuildDataUpdater {
 
         for (Guild guild : guilds) {
             UpdateGuildData.load(dataRepository, guild);
+
+//            guild.getAudioManager().setConnectionListener(
+//                    new ConnectionListener() {
+//                        @Override
+//                        public void onStatusChange(ConnectionStatus status) {
+//                            System.out.println("Voice status: " + status);
+//                        }
+//                    }
+//            );
         }
 
 

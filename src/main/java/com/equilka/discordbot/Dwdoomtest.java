@@ -1,16 +1,19 @@
 package com.equilka.discordbot;
 
-import com.equilka.discordbot.data.model.config.BotConfigData;
+import club.minnced.discord.jdave.interop.JDaveSessionFactory;
+import com.equilka.discordbot.data.DataCleaner;
+import com.equilka.discordbot.data.GuildDataUpdater;
 import com.equilka.discordbot.data.model.config.BotConfig;
+import com.equilka.discordbot.data.model.config.BotConfigData;
 import com.equilka.discordbot.events.listeners.commands.NotificationsListener;
 import com.equilka.discordbot.events.listeners.commands.QuotesListener;
 import com.equilka.discordbot.events.listeners.commands.StatsListener;
-import com.equilka.discordbot.data.DataCleaner;
-import com.equilka.discordbot.data.GuildDataUpdater;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.audio.AudioModuleConfig;
 import net.dv8tion.jda.api.exceptions.RateLimitedException;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 import javax.security.auth.login.LoginException;
 import java.util.Locale;
@@ -49,6 +52,9 @@ public class Dwdoomtest {
                         new QuotesListener(),
 
                         new DataCleaner(bot, Locale.forLanguageTag(bot.getConfig().getLangCode())))
+                .enableIntents(GatewayIntent.GUILD_VOICE_STATES)
+                .setAudioModuleConfig(new AudioModuleConfig()
+                        .withDaveSessionFactory(new JDaveSessionFactory()))
                 .build();
         bot.setJda(jda);
         jda.awaitReady();

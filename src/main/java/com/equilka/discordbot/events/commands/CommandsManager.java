@@ -1,19 +1,19 @@
 package com.equilka.discordbot.events.commands;
 
 import com.equilka.discordbot.Bot;
+import com.equilka.discordbot.data.DataRepository;
+import com.equilka.discordbot.data.model.commands.GuildStats;
+import com.equilka.discordbot.events.commands.general.stats.StatsCommand;
+import com.equilka.discordbot.events.commands.general.voice.PlayCommand;
+import com.equilka.discordbot.events.commands.moderation.guildconfig.GuildConfigCommand;
+import com.equilka.discordbot.events.commands.moderation.guildconfig.ReactionsConfigCommand;
 import com.equilka.discordbot.events.general.downloadable.DownloadCommand;
 import com.equilka.discordbot.events.general.notify.NotifyCommand;
 import com.equilka.discordbot.events.general.quotes.QuoteCommand;
 import com.equilka.discordbot.events.general.random.RandomCommand;
 import com.equilka.discordbot.events.general.random.RollCommand;
-import com.equilka.discordbot.data.model.commands.GuildStats;
-import com.equilka.discordbot.events.general.stats.StatsCommand;
-import com.equilka.discordbot.events.commands.moderation.guildconfig.GuildConfigCommand;
-import com.equilka.discordbot.events.commands.moderation.guildconfig.ReactionsConfigCommand;
 import com.equilka.discordbot.events.voice.JoinCommand;
 import com.equilka.discordbot.events.voice.LeaveCommand;
-import com.equilka.discordbot.events.voice.PlayCommand;
-import com.equilka.discordbot.data.DataRepository;
 import com.jagrosh.jdautilities.command.SlashCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;

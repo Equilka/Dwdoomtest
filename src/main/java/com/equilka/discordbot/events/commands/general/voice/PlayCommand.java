@@ -1,4 +1,4 @@
-package com.equilka.discordbot.events.voice;
+package com.equilka.discordbot.events.commands.general.voice;
 
 import com.equilka.discordbot.Bot;
 import com.equilka.discordbot.events.commands.SmartSlashCommand;

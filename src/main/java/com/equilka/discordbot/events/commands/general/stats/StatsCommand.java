@@ -1,4 +1,4 @@
-package com.equilka.discordbot.events.general.stats;
+package com.equilka.discordbot.events.commands.general.stats;
 
 import com.equilka.discordbot.Bot;
 import com.equilka.discordbot.events.commands.SmartSlashCommand;
@@ -6,12 +6,13 @@ import com.equilka.discordbot.data.model.commands.GuildStats;
 import com.equilka.discordbot.data.model.commands.MemberStats;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.components.actionrow.ActionRow;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import net.dv8tion.jda.api.components.buttons.Button;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -79,11 +80,11 @@ public class StatsCommand extends SmartSlashCommand {
 
         Guild guild = event.getGuild();
         event.replyEmbeds(createEmbed(membersForPage.get(page - 1), guild, type, guildStats, event.getUser().getId(), from + 1))
-                .addActionRow(
+                .addComponents(ActionRow.of(
                         Button.primary("prev", "◀"),
                         Button.primary("page", page + " / " + membersForPage.size()).asDisabled(),
                         Button.primary("next", "▶")
-                ).queue();
+                )).queue();
     }
 
     private void loadPage() {
