@@ -1,13 +1,14 @@
 services:
   bot:
     build: .
-    container_name: my-bot
+    container_name: dwdoomtest
     restart: unless-stopped
     env_file: .env
     environment:
       TZ: Europe/Kyiv
     volumes:
       - ./data:/app/data
+      - ./.env:/app/.env:ro
     mem_limit: 4g
     logging:
       driver: json-file
