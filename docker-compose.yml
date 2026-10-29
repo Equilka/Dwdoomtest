@@ -1,5 +1,5 @@
 services:
-  bot:
+  dwdoomtest:
     build: .
     container_name: dwdoomtest
     restart: unless-stopped
@@ -8,6 +8,7 @@ services:
       TZ: Europe/Kyiv
     volumes:
       - ./data:/app/data
+      - ./data:/app/downloads
       - ./.env:/app/.env:ro
     mem_limit: 4g
     logging:
