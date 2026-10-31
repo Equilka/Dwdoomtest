@@ -8,7 +8,7 @@ services:
       TZ: Europe/Kyiv
     volumes:
       - ./data:/app/data
-      - ./data:/app/downloads
+      - ./downloads:/app/downloads
       - ./.env:/app/.env:ro
     mem_limit: 4g
     logging:
