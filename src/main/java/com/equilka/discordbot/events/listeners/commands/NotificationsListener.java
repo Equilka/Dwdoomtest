@@ -49,16 +49,18 @@ public class NotificationsListener extends ListenerAdapter {
                     Member subscriber = guild.retrieveMemberById(notification.getSubscriber()).complete();
 
 
-                    if (target.getOnlineStatus().equals(OnlineStatus.ONLINE)) {
+                    if (!target.getOnlineStatus().equals(OnlineStatus.OFFLINE)) {
+                        dataRepository.removeById(notification.getId(), Notification.class);
+                        dataRepository.save();
+
                         subscriber.getUser().openPrivateChannel()
                                 .queue((channel) -> channel
                                         .sendMessageEmbeds(createEmbeded(jda, date, target.getId(), " " + lr.getTranslatable(lang, "pm.notification.user_online"), null)).queue());
                         if (notification.getMessage() != null)
                             target.getUser().openPrivateChannel()
                                     .queue((channel) -> channel
-                                            .sendMessageEmbeds(createEmbeded(jda, date, subscriber.getId(), lr.getTranslatable(lang, "pm.notification.user_awaits"), notification.getMessage())).queue());
+                                            .sendMessageEmbeds(createEmbeded(jda, date, subscriber.getId(), " " + lr.getTranslatable(lang, "pm.notification.user_awaits"), notification.getMessage())).queue());
 
-                        dataRepository.removeById(notification.getId(), Notification.class);
 
                     }
                 }

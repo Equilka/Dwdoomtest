@@ -1,6 +1,7 @@
 package com.equilka.discordbot.events.general.notify;
 
 import com.equilka.discordbot.Bot;
+import com.equilka.discordbot.data.DataRepository;
 import com.equilka.discordbot.events.commands.SmartSlashCommand;
 import com.equilka.discordbot.data.model.commands.Notification;
 import net.dv8tion.jda.api.entities.Guild;
@@ -18,6 +19,7 @@ public class NotifyCommand extends SmartSlashCommand {
         super(bot, lang);
         this.name = "notify";
         this.help = lr.getTranslatable(lang, "command.notify.help");
+        this.dataRepository = new DataRepository("notifications.json");
 
         List<OptionData> options = new ArrayList<>();
         options.add(new OptionData(OptionType.USER, "user", lr.getTranslatable(lang, "command.notify.option.user"), true));

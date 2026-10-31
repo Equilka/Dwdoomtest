@@ -59,7 +59,9 @@ public class QuotesListener extends ListenerAdapter {
     private boolean isValid(Message message) {
         guildData.load();
         GuildStats guild = guildData.getAll(GuildStats.class).stream()
-                .filter(g -> Objects.equals(g.getId(), message.getGuild().getId())).findFirst().get();
+                .filter(g -> Objects.equals(g.getId(), message.getGuild().getId())).findFirst().orElse(null);
+        if (guild == null)
+            return false;
         String channel = guild.getQuotesChannelId();
         if (channel == null)
             return false;

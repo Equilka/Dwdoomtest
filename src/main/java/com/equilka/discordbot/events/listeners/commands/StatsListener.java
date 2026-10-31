@@ -30,7 +30,7 @@ public class StatsListener extends ListenerAdapter {
         stats.getStats().set(stats.getStats().indexOf(memberStats), memberStats);
         stats.setMessages(stats.getMessages() + 1);
 
-        dataRepository.revriteOrAdd(stats.getId(), GuildStats.class, stats);
+        dataRepository.rewriteOrAdd(stats.getId(), GuildStats.class, stats);
     }
 
     @Override
@@ -60,6 +60,6 @@ public class StatsListener extends ListenerAdapter {
         memberStats.setCredit(memberStats.getCredit() + 1);
         stats.getStats().set(stats.getStats().indexOf(memberStats), memberStats);
 
-        dataRepository.revriteOrAdd(stats.getId(), GuildStats.class, stats);
+        dataRepository.rewriteOrAdd(stats.getId(), GuildStats.class, stats);
     }
 }

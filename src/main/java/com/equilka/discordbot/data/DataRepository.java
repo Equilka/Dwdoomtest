@@ -30,8 +30,6 @@ public class DataRepository {
     }
 
     public void load() {
-        if (data != null)
-            return;
         if(!dataFile.exists() || dataFile.length() == 0) {
             data = new JsonArray();
             try {
@@ -73,7 +71,7 @@ public class DataRepository {
         save();
     }
 
-    public <T extends BotData> void revriteOrAdd(String id, Class<T> tClass, T element) {
+    public <T extends BotData> void rewriteOrAdd(String id, Class<T> tClass, T element) {
         removeById(id, tClass);
         add(element);
     }
